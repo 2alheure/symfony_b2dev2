@@ -11,6 +11,21 @@ class AccueilController extends AbstractController {
 
     #[Route('/accueil')]
     public function accueil(Request $request) {
-        return $this->render('accueil.html');
+        $ng = rand(1, 1_000_000);
+        $jdls = [
+            'Lundi',
+            'Mardi',
+            'Mercredi',
+            'Jeudi',
+            'Vendredi',
+            'Samedi',
+            'Dimanche'
+        ];
+
+        return $this->render('accueil.html.twig', [
+            'numero_gagnant' => $ng,
+            'semaine' => $jdls,
+            'date_du_jour' => new \DateTime()
+        ]);
     }
 }

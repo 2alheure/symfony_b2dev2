@@ -9,6 +9,16 @@
 <body>
     <h1>Accueil</h1>
 
+    <p>Le numéro gagnant du  jour est : {{ numero_gagnant}}</p>
+
+    <ul>
+        {% for jour in semaine %}
+            <li>{{ jour }}</li>             
+        {% endfor %}
+    </ul>
+
+    <p>Nous sommes le {{ date_du_jour|date('d/m/Y H:i:s') }}</p>
+
     <p style="color: red; border: 1px solid black">Toto</p>
 
     <p style="color: blue; border: 1px solid black">Titi</p>
