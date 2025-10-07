@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccueilController extends AbstractController {
 
     #[Route('/accueil')]
-    public function accueil(Request $request) {
+    public function accueil(Request $request): Response {
         $ng = rand(1, 1_000_000);
         $jdls = [
             'Lundi',
