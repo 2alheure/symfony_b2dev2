@@ -22,6 +22,9 @@ class AccueilController extends AbstractController {
             'Dimanche'
         ];
 
+        // Si j'ai besoin de l'utilisateur connecté
+        $user = $this->getUser();
+
         return $this->render('accueil.html.twig', [
             'numero_gagnant' => $ng,
             'semaine' => $jdls,

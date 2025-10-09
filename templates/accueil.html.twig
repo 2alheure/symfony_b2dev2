@@ -22,5 +22,15 @@
     <p style="color: red; border: 1px solid black">Toto</p>
 
     <p style="color: blue; border: 1px solid black">Titi</p>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>Bonjour, ô mon maître adoré !</p>
+    {% endif %}
+
+    {% if app.user %}
+        <p>Connecté en tant que {{ app.user.email }}.</p>
+    {% endif %}
+    
+    
 </body>
 </html>

@@ -10,11 +10,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class ArticleController extends AbstractController {
     #[Route('/article/create', name: 'app_article')]
     public function index(EntityManagerInterface $em, Request $request): Response {
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            // On vérifie que l'utilisateur a le rôle ROLE_ADMIN
+            throw new AccessDeniedHttpException("Vous n'avez pas le droit d'accéder à cette page");
+        }
+
         $article = new Article;
 
         $form = $this->createForm(ArticleType::class, $article);
@@ -32,6 +40,7 @@ final class ArticleController extends AbstractController {
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')] // Permet de vérifier que l'utilisateur a le rôle ROLE_ADMIN
     #[Route('/articles/{id}/update', name: 'app_article_update')]
     public function update($id, ArticleRepository $ar, Request $request, EntityManagerInterface $em): Response {
         // J'utilise l'ID de l'URL pour récupérer l'article en BDD
