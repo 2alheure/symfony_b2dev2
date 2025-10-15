@@ -40,6 +40,8 @@ final class ArticleController extends AbstractController {
             $image->move($dossier, $name);
             $article->setImg($name);
 
+            // $article->setAuteur($this->getUser()); // Je mets comme auteur l'utilisateur actuellement connecté
+
             $em->persist($article);
             $em->flush();
 
