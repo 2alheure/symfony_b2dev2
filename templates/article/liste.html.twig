@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+
+    {% for key, array in app.flashes %}
+        {% for message in array %}
+            <p><strong>{{ key|upper }}</strong> : {{ message }}</p>
+        {% endfor %}
+    {% endfor %}
+
     <ul>
         {% for a in articles %}
             <li>#{{ a.id }} :  {{ a.titre }}</li>
