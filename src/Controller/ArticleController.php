@@ -29,6 +29,17 @@ final class ArticleController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get('img')->getData();
+
+            $extension = $image->guessExtension();
+            $name = 'article-' . uniqid() . '.' . $extension;
+
+            $dossier = __DIR__ . '/../../public/img/';
+
+            $image->move($dossier, $name);
+            $article->setImg($name);
+
             $em->persist($article);
             $em->flush();
 

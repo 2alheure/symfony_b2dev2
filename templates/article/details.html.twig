@@ -9,7 +9,7 @@
 		<h1>{{ article.titre }}</h1>
         <p>Ecrit le {{ article.date|date('d/m/Y') }}</p>
 
-        <img src="{{ article.img }}" alt="">
+        <img src="{{ asset('img/' ~ article.img) }}" alt="">
 
         <p>{{ article.contenu }}</p>
 	</body>
